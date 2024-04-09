@@ -1,6 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
+IServiceCollection services = builder.Services;
+IConfiguration configuration = builder.Configuration;
+
+services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
+services.AddDbContext<StorageeDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("storagedb")));
 
 var app = builder.Build();
 
