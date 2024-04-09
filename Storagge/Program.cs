@@ -4,7 +4,9 @@ IServiceCollection services = builder.Services;
 IConfiguration configuration = builder.Configuration;
 
 services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
-services.AddDbContext<StorageeDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("storagedb")));
+
+string? connectionString = configuration.GetValue<string>("Database:ConnectionString");
+services.AddDbContext<StorageeDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
