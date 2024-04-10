@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Storagge": {
+    "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

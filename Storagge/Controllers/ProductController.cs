@@ -9,9 +9,11 @@
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _context.Products.ToListAsync();
+
+            return View(products);
         }
     }
 }
