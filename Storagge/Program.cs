@@ -15,7 +15,14 @@ if (app.Environment.IsDevelopment())
 	app.UseDeveloperExceptionPage();
 }
 
-app.UseMvcWithDefaultRoute();
+//app.UseMvcWithDefaultRoute();
+app.UseMvc(config =>
+{
+	config.MapRoute(
+		name: "default", 
+		template: "{controller=Product}/{action=Index}/{id?}");
+});
+
 app.UseRouting();
 
 app.Run();
