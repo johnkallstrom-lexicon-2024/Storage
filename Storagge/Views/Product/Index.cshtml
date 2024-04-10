@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>
+﻿@model IEnumerable<ProductViewModel>
 
 @{
     ViewBag.Title = "Products";
@@ -8,28 +8,20 @@
 <table class="table table-bordered">
     <thead class="table-dark">
         <tr>
-            <th scope="col">@Html.DisplayNameFor(p => p.Id)</th>
             <th scope="col">@Html.DisplayNameFor(p => p.Name)</th>
             <th scope="col">@Html.DisplayNameFor(p => p.Price)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.OrderDate)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.Category)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.Shelf)</th>
             <th scope="col">@Html.DisplayNameFor(p => p.Count)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.Description)</th>
+            <th scope="col">@Html.DisplayNameFor(p => p.InventoryValue)</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var product in Model)
         {
             <tr>
-                <th scope="row">@product.Id</th>
                 <td>@product.Name</td>
                 <td>@product.Price</td>
-                <td>@product.OrderDate</td>
-                <td>@product.Category</td>
-                <td>@product.Shelf</td>
                 <td>@product.Count</td>
-                <td>@product.Description</td>
+                <td>@product.InventoryValue</td>
             </tr>
         }
     </tbody>
