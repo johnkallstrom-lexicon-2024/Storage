@@ -12,7 +12,7 @@ using Storagge.Persistence;
 namespace Storagge.Persistence.Migrations
 {
     [DbContext(typeof(StorageeDbContext))]
-    [Migration("20240410125404_Initial")]
+    [Migration("20240410133553_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -35,7 +35,9 @@ namespace Storagge.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
                         .HasColumnName("Category");
 
                     b.Property<int>("Count")
@@ -43,17 +45,21 @@ namespace Storagge.Persistence.Migrations
                         .HasColumnName("Count");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("Name");
 
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 4, 10, 14, 54, 4, 620, DateTimeKind.Local).AddTicks(7515))
+                        .HasDefaultValue(new DateTime(2024, 4, 10, 15, 35, 53, 601, DateTimeKind.Local).AddTicks(3487))
                         .HasColumnName("OrderDate");
 
                     b.Property<int>("Price")
@@ -61,7 +67,9 @@ namespace Storagge.Persistence.Migrations
                         .HasColumnName("Price");
 
                     b.Property<string>("Shelf")
-                        .HasColumnType("nvarchar(max)")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)")
                         .HasColumnName("Shelf");
 
                     b.HasKey("Id");
