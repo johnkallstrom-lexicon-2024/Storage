@@ -1,0 +1,45 @@
+﻿@model CreateOrEditProductViewModel
+
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="Product" asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" type="text" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" type="number" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="OrderDate" class="form-label"></label>
+                        <input asp-for="OrderDate" type="date" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Category" class="form-label"></label>
+                        <input asp-for="Category" type="text" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Shelf" class="form-label"></label>
+                        <input asp-for="Shelf" type="text" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Count" class="form-label"></label>
+                        <input asp-for="Count" type="number" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description"></label>
+                        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

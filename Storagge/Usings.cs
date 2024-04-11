@@ -6,3 +6,4 @@ global using Storagge.ViewModels;
 global using Storagge.Persistence.EntityConfigurations;
 global using Microsoft.AspNetCore.Mvc;
 global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel;

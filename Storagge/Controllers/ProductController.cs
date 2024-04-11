@@ -9,6 +9,7 @@
             _context = context;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var model = await _context.Products.Select(x => new ProductViewModel
@@ -22,11 +23,18 @@
             return View(model);
         }
 
+        [HttpGet]
         public async Task<IActionResult> DetailedList()
         {
             var products = await _context.Products.ToListAsync();
 
             return View(products);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
         }
     }
 }
