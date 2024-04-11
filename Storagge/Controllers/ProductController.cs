@@ -36,5 +36,31 @@
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(CreateOrEditProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var product = new Product
+            {
+                Name = model.Name,
+                Price = model.Price,
+                OrderDate = model.OrderDate,
+                Category = model.Category,
+                Shelf = model.Shelf,
+                Count = model.Count,
+                Description = model.Description
+            };
+
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

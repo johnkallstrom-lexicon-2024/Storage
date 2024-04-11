@@ -9,7 +9,7 @@
         [Range(0, double.MaxValue)]
         public int Price { get; set; }
 
-        [DisplayName("Date of order")]
+        [DisplayName("Order date")]
         [DataType(DataType.Date)]
         [Required]
         public DateTime OrderDate { get; set; }
