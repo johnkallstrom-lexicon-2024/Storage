@@ -87,6 +87,18 @@
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(CreateOrEditProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
