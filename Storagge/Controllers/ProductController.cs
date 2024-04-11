@@ -65,9 +65,26 @@
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            var model = new CreateOrEditProductViewModel
+            {
+                Name = product.Name,
+                Price = product.Price,
+                OrderDate = product.OrderDate,
+                Category = product.Category,
+                Shelf = product.Shelf,
+                Count = product.Count,
+                Description = product.Description
+            };
+
+            return View(model);
         }
 
         [HttpGet]

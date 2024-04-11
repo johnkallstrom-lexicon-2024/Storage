@@ -1,3 +1,53 @@
-﻿@{
-    ViewBag.Title = "Edit Product";
+﻿@model CreateOrEditProductViewModel
+
+@{
+    ViewBag.Title = $"Edit {Model.Name}";
 }
+
+<div class="row mb-3">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="Product" asp-action="Edit" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" type="text" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" type="number" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="OrderDate" class="form-label"></label>
+                        <input asp-for="OrderDate" type="date" class="form-control" />
+                        <span asp-validation-for="OrderDate" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Category" class="form-label"></label>
+                        <input asp-for="Category" type="text" class="form-control" />
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Shelf" class="form-label"></label>
+                        <input asp-for="Shelf" type="text" class="form-control" />
+                        <span asp-validation-for="Shelf" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Count" class="form-label"></label>
+                        <input asp-for="Count" type="number" class="form-control" />
+                        <span asp-validation-for="Count" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description"></label>
+                        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<a asp-controller="Product" asp-action="Index">Back to products</a>
