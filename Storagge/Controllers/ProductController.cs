@@ -12,8 +12,9 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var model = await _context.Products.Select(x => new ProductViewModel
+            var model = await _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductViewModel
             {
+                Id = x.Id,
                 Name = x.Name,
                 Price = x.Price,
                 Count = x.Count,
@@ -32,14 +33,14 @@
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateOrEditProductViewModel model)
+        public async Task<IActionResult> Create(CreateOrEditProductViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -61,6 +62,18 @@
             await _context.SaveChangesAsync();
             
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            return View();
         }
     }
 }
