@@ -7,7 +7,7 @@
         public int Price { get; set; }
         [DisplayName("Amount")]
         public int Count { get; set; }
-        [DisplayName("Total inventory value")]
+        [DisplayName("Inventory value")]
         public int InventoryValue { get; set; }
     }
 }

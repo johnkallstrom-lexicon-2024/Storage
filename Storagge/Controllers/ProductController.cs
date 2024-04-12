@@ -126,13 +126,19 @@
                 return NotFound();
             }
 
-            return View(product);
+            return View(new DeleteProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Category = product.Category
+            });
         }
 
-        [HttpPost(Name = "Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmation(Product product)
+        public async Task<IActionResult> Delete(DeleteProductViewModel model)
         {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (product is null)
             {
                 return NotFound();
