@@ -10,6 +10,39 @@
         }
 
         [HttpGet]
+        public async Task<IActionResult> Search(string query)
+        {
+            IEnumerable<ProductViewModel> model = default!;
+
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                model = await _context.Products.Select(p => new ProductViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Count = p.Count,
+                    InventoryValue = p.Price * p.Count
+                }).ToListAsync();
+            }
+            else
+            {
+                model = await _context.Products
+                    .Where(p => p.Category!.Contains(query) || p.Name!.Contains(query))
+                    .Select(p => new ProductViewModel
+                     {
+                         Id = p.Id,
+                         Name = p.Name,
+                         Price = p.Price,
+                         Count = p.Count,
+                         InventoryValue = p.Price * p.Count
+                     }).ToListAsync();
+            }
+
+            return View(nameof(Index), model);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var model = await _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductViewModel
