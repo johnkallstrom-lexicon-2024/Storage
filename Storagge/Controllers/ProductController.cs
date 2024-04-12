@@ -1,5 +1,6 @@
 ﻿namespace Storagge.Controllers
 {
+    // Todo: Använda automapper vid mappning istället
     public class ProductController : Controller
     {
         private StorageeDbContext _context;
