@@ -22,6 +22,7 @@
                     Name = p.Name,
                     Price = p.Price,
                     Count = p.Count,
+                    Category = p.Category,
                     InventoryValue = p.Price * p.Count
                 }).ToListAsync();
             }
@@ -35,6 +36,7 @@
                          Name = p.Name,
                          Price = p.Price,
                          Count = p.Count,
+                         Category = p.Category,
                          InventoryValue = p.Price * p.Count
                      }).ToListAsync();
             }
@@ -51,6 +53,7 @@
                 Name = x.Name,
                 Price = x.Price,
                 Count = x.Count,
+                Category = x.Category,
                 InventoryValue = x.Price * x.Count
             }).ToListAsync();
 

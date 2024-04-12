@@ -23,6 +23,7 @@
             <th scope="col">@Html.DisplayNameFor(p => p.Name)</th>
             <th scope="col">@Html.DisplayNameFor(p => p.Price)</th>
             <th scope="col">@Html.DisplayNameFor(p => p.Count)</th>
+            <th scope="col">@Html.DisplayNameFor(p => p.Category)</th>
             <th scope="col">@Html.DisplayNameFor(p => p.InventoryValue)</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -35,6 +36,7 @@
                 <td>@product.Name</td>
                 <td>@product.Price</td>
                 <td>@product.Count</td>
+                <td>@product.Category</td>
                 <td>@product.InventoryValue</td>
                 <td>
                     <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
