@@ -75,6 +75,7 @@
 
             var model = new CreateOrEditProductViewModel
             {
+                Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
                 OrderDate = product.OrderDate,
@@ -96,7 +97,24 @@
                 return View(model);
             }
 
-            return View();
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == model.Id);
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            product.Name = model.Name;
+            product.Price = model.Price;
+            product.OrderDate = model.OrderDate;
+            product.Category = model.Category;
+            product.Shelf = model.Shelf;
+            product.Count = model.Count;
+            product.Description = model.Description;
+
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
