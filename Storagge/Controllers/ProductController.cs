@@ -118,9 +118,30 @@
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost(Name = "Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmation(Product product)
+        {
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
