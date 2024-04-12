@@ -13,11 +13,11 @@
         [HttpGet]
         public async Task<IActionResult> Search(string query)
         {
-            IEnumerable<ProductViewModel> model = default!;
+            var model = new SearchProductListViewModel();
 
             if (string.IsNullOrWhiteSpace(query))
             {
-                model = await _context.Products.Select(p => new ProductViewModel
+                model.Products = await _context.Products.Select(p => new ProductViewModel
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -29,7 +29,7 @@
             }
             else
             {
-                model = await _context.Products
+                model.Products = await _context.Products
                     .Where(p => p.Category!.Contains(query) || p.Name!.Contains(query))
                     .Select(p => new ProductViewModel
                      {
@@ -42,13 +42,16 @@
                      }).ToListAsync();
             }
 
+            model.Query = query;
             return View(nameof(Index), model);
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var model = await _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductViewModel
+            var model = new SearchProductListViewModel();
+
+            model.Products = await _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductViewModel
             {
                 Id = x.Id,
                 Name = x.Name,

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductViewModel>
+﻿@model SearchProductListViewModel
 
 @{
     ViewBag.Title = "Products";
@@ -11,7 +11,7 @@
     <div class="col-sm-6">
         <form asp-controller="Product" asp-action="Search" method="get">
             <div class="mb-3 d-flex flex-row">
-                <input type="text" name="query" class="form-control" placeholder="Search..." />
+                <input asp-for="Query" type="text" class="form-control" placeholder="Search..." />
                 <input type="submit" class="btn btn-primary ms-2" />
             </div>
         </form>
@@ -20,17 +20,17 @@
 <table class="table table-bordered">
     <thead class="table-dark">
         <tr>
-            <th scope="col">@Html.DisplayNameFor(p => p.Name)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.Price)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.Count)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.Category)</th>
-            <th scope="col">@Html.DisplayNameFor(p => p.InventoryValue)</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Count</th>
+            <th scope="col">Category</th>
+            <th scope="col">Inventory value</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
             <tr>
                 <td>@product.Name</td>
