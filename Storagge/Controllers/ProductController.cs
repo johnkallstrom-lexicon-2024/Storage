@@ -10,38 +10,40 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search(string query)
+        public async Task<IActionResult> Search(string query, Category? category)
         {
-            var model = new SearchProductListViewModel();
+            var products = _context.Products.AsQueryable();
 
-            if (string.IsNullOrWhiteSpace(query))
+            if (!string.IsNullOrWhiteSpace(query))
             {
-                model.Products = await _context.Products.Select(p => new ProductViewModel
+                products = products.Where(x => x.Name!.Contains(query));
+            }
+
+            if (category is not null)
+            {
+                products = products.Where(x => x.Category.Equals(category));
+            }
+
+            var model = new SearchProductListViewModel
+            {
+                Query = query,
+                Category = category,
+                Products = await products.Select(x => new ProductViewModel
                 {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Count = p.Count,
-                    Category = p.Category,
-                    InventoryValue = p.Price * p.Count
-                }).ToListAsync();
-            }
-            else
-            {
-                model.Products = await _context.Products
-                    .Where(p => p.Name!.Contains(query))
-                    .Select(p => new ProductViewModel
-                     {
-                         Id = p.Id,
-                         Name = p.Name,
-                         Price = p.Price,
-                         Count = p.Count,
-                         Category = p.Category,
-                         InventoryValue = p.Price * p.Count
-                     }).ToListAsync();
-            }
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    Count = x.Count,
+                    Category = x.Category,
+                    InventoryValue = x.Price * x.Count
+                }).ToListAsync(),
+                Categories = products.Select(x => x.Category).Distinct().Select(c => new SelectListItem
+                {
+                    Text = c.ToString(),
+                    Value = c.ToString()
+                })
+            };
 
-            model.Query = query;
             return View(nameof(Index), model);
         }
 
@@ -50,7 +52,7 @@
         {
             var model = new SearchProductListViewModel();
 
-            model.Products = await _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductViewModel
+            model.Products = await _context.Products.Select(x => new ProductViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -59,6 +61,15 @@
                 Category = x.Category,
                 InventoryValue = x.Price * x.Count
             }).ToListAsync();
+
+            model.Categories = model.Products
+                .Select(x => x.Category)
+                .Distinct()
+                .Select(c => new SelectListItem
+                {
+                    Text = c.ToString(),
+                    Value = c.ToString()
+                });
 
             return View(model);
         }
