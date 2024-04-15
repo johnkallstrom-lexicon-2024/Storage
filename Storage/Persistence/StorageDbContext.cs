@@ -1,10 +1,10 @@
 ﻿namespace Storagge.Persistence
 {
-    public class StorageeDbContext : DbContext
+    public class StorageDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
 
-        public StorageeDbContext(DbContextOptions<StorageeDbContext> options) : base(options)
+        public StorageDbContext(DbContextOptions<StorageDbContext> options) : base(options)
         {
         }
 

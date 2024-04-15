@@ -11,7 +11,7 @@ using Storagge.Persistence;
 
 namespace Storagge.Persistence.Migrations
 {
-    [DbContext(typeof(StorageeDbContext))]
+    [DbContext(typeof(StorageDbContext))]
     [Migration("20240415141642_Initial")]
     partial class Initial
     {

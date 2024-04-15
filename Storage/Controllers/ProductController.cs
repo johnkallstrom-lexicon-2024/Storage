@@ -2,9 +2,9 @@
 {
     public class ProductController : Controller
     {
-        private StorageeDbContext _context;
+        private StorageDbContext _context;
 
-        public ProductController(StorageeDbContext context)
+        public ProductController(StorageDbContext context)
         {
             _context = context;
         }

@@ -10,7 +10,7 @@ using Storagge.Persistence;
 
 namespace Storagge.Persistence.Migrations
 {
-    [DbContext(typeof(StorageeDbContext))]
+    [DbContext(typeof(StorageDbContext))]
     partial class StorageeDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
