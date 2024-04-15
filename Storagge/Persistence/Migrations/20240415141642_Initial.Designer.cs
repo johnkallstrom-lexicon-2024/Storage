@@ -12,7 +12,7 @@ using Storagge.Persistence;
 namespace Storagge.Persistence.Migrations
 {
     [DbContext(typeof(StorageeDbContext))]
-    [Migration("20240410133553_Initial")]
+    [Migration("20240415141642_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Storagge.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -34,10 +34,8 @@ namespace Storagge.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                    b.Property<int>("Category")
+                        .HasColumnType("int")
                         .HasColumnName("Category");
 
                     b.Property<int>("Count")
@@ -59,7 +57,7 @@ namespace Storagge.Persistence.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 4, 10, 15, 35, 53, 601, DateTimeKind.Local).AddTicks(3487))
+                        .HasDefaultValue(new DateTime(2024, 4, 15, 16, 16, 42, 235, DateTimeKind.Local).AddTicks(6202))
                         .HasColumnName("OrderDate");
 
                     b.Property<int>("Price")
@@ -80,7 +78,7 @@ namespace Storagge.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Category = "Entertainment",
+                            Category = 0,
                             Count = 10,
                             Description = "A boardgame about fighting invading alien ships!",
                             Name = "Under Falling Skies",
@@ -91,7 +89,7 @@ namespace Storagge.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            Category = "Outdoors",
+                            Category = 3,
                             Count = 3,
                             Description = "A sturdy pair of hiking boots.",
                             Name = "Hanwag Hiking Boots",
@@ -102,7 +100,7 @@ namespace Storagge.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            Category = "Kitchen",
+                            Category = 1,
                             Count = 5,
                             Description = "Great coffee machine.",
                             Name = "Moccamaster",
@@ -113,7 +111,7 @@ namespace Storagge.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            Category = "Plants",
+                            Category = 2,
                             Count = 15,
                             Description = "An easy to care for plant that fits most homes!",
                             Name = "Monstera Delicsiosa",
@@ -124,7 +122,7 @@ namespace Storagge.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            Category = "Entertainment",
+                            Category = 0,
                             Count = 15,
                             Description = "An awesome videogame!",
                             Name = "Zelda: Breath of the Wild",

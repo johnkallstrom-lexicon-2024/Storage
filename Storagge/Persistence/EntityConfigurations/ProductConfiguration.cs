@@ -22,7 +22,7 @@
                     Id = 1,
                     Name = "Under Falling Skies",
                     Price = 299,
-                    Category = "Entertainment",
+                    Category = Category.Entertainment,
                     Shelf = "A15",
                     Count = 10,
                     Description = "A boardgame about fighting invading alien ships!"
@@ -32,7 +32,7 @@
                     Id = 2,
                     Name = "Hanwag Hiking Boots",
                     Price = 1099,
-                    Category = "Outdoors",
+                    Category = Category.Outdoors,
                     Shelf = "B07",
                     Count = 3,
                     Description = "A sturdy pair of hiking boots."
@@ -42,7 +42,7 @@
                     Id = 3,
                     Name = "Moccamaster",
                     Price = 1499,
-                    Category = "Kitchen",
+                    Category = Category.Kitchen,
                     Shelf = "C19",
                     Count = 5,
                     Description = "Great coffee machine."
@@ -52,7 +52,7 @@
                     Id = 4,
                     Name = "Monstera Delicsiosa",
                     Price = 199,
-                    Category = "Plants",
+                    Category = Category.Plants,
                     Shelf = "D01",
                     Count = 15,
                     Description = "An easy to care for plant that fits most homes!"
@@ -62,7 +62,7 @@
                     Id = 5,
                     Name = "Zelda: Breath of the Wild",
                     Price = 699,
-                    Category = "Entertainment",
+                    Category = Category.Entertainment,
                     Shelf = "A08",
                     Count = 15,
                     Description = "An awesome videogame!"

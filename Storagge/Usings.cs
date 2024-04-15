@@ -2,11 +2,9 @@
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Storagge.Persistence;
 global using Storagge.Models;
+global using Storagge.Enums;
 global using Storagge.ViewModels;
 global using Storagge.Persistence.EntityConfigurations;
 global using Microsoft.AspNetCore.Mvc;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel;
-global using AutoMapper;
-global using Storagge.Mappings;
-global using System.Reflection;

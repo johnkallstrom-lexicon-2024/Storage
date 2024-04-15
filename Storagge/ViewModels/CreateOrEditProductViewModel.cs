@@ -16,9 +16,8 @@
         [Required]
         public DateTime OrderDate { get; set; }
 
-        [StringLength(20)]
         [Required]
-        public string? Category { get; set; }
+        public Category Category { get; set; }
 
         [StringLength(5)]
         [Required]

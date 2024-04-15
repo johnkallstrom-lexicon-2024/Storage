@@ -1,6 +1,5 @@
 ﻿namespace Storagge.Controllers
 {
-    // Todo: Använda automapper vid mappning istället
     public class ProductController : Controller
     {
         private StorageeDbContext _context;
@@ -30,7 +29,7 @@
             else
             {
                 model.Products = await _context.Products
-                    .Where(p => p.Category!.Contains(query) || p.Name!.Contains(query))
+                    .Where(p => p.Name!.Contains(query))
                     .Select(p => new ProductViewModel
                      {
                          Id = p.Id,
