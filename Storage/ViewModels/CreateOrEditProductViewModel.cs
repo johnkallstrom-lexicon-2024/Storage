@@ -14,7 +14,7 @@
         [DisplayName("Order date")]
         [DataType(DataType.Date)]
         [Required]
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
         [Required]
         public Category Category { get; set; }
@@ -29,5 +29,11 @@
         [StringLength(300)]
         [Required]
         public string? Description { get; set; }
+        public IEnumerable<SelectListItem> Categories { get; set; }
+
+        public CreateOrEditProductViewModel()
+        {
+            Categories = new List<SelectListItem>();
+        }
     }
 }

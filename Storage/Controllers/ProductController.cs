@@ -85,7 +85,16 @@
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new CreateOrEditProductViewModel
+            {
+                Categories = Enum.GetValues<Category>().Select(x => new SelectListItem
+                {
+                    Text = x.ToString(),
+                    Value = x.ToString()
+                })
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -132,7 +141,12 @@
                 Category = product.Category,
                 Shelf = product.Shelf,
                 Count = product.Count,
-                Description = product.Description
+                Description = product.Description,
+                Categories = Enum.GetValues<Category>().Select(x => new SelectListItem
+                {
+                    Text = x.ToString(),
+                    Value = x.ToString()
+                })
             };
 
             return View(model);
